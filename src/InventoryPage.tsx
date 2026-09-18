@@ -261,7 +261,7 @@ function ShipmentModal({ shipment, step, onClose, onStep, onConfirm }: { shipmen
                 <div><dt>Shipping date</dt><dd>{shipment.shippingDate}</dd></div>
                 <div><dt>Tracking number</dt><dd>{shipment.trackingNumber}</dd></div>
               </dl>
-              <button className="modal-button modal-button--secondary shipment-track" type="button">Track shipment <Icon src={`${ASSET}external-link.svg`} size={20} /></button>
+              <a className="modal-button modal-button--secondary shipment-track" href="https://cs.estafeta.com/es/Tracking/searchByGet?wayBill=9185909159685700013723&wayBillType=0&isShipmentDetail=False" target="_blank" rel="noopener noreferrer">Track shipment <Icon src={`${ASSET}external-link.svg`} size={20} /></a>
             </div>
           </div>
           <footer className="shipment-modal__actions">
