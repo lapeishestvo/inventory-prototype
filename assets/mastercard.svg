@@ -1,0 +1,7 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="16" height="10" viewBox="0 0 16 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="master-card-logo">
+<ellipse id="red" cx="4.92421" cy="5" rx="4.92421" ry="5" fill="#EB001B"/>
+<ellipse id="yellow" cx="11.0758" cy="5" rx="4.92421" ry="5" fill="#F79E1B"/>
+<path id="orange" fill-rule="evenodd" clip-rule="evenodd" d="M8.00442 8.90047C9.13017 7.98414 9.85099 6.5761 9.85099 4.99711C9.85099 3.41812 9.13017 2.01008 8.00442 1.09375C6.87866 2.01008 6.15784 3.41812 6.15784 4.99711C6.15784 6.5761 6.87866 7.98414 8.00442 8.90047Z" fill="#F16122"/>
+</g>
+</svg>
