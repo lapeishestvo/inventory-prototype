@@ -564,53 +564,55 @@ export function InventoryPage() {
         <Sidebar />
         <div className="content">
           <Topbar />
-          <div className="columns">
-            <div className="left-column">
-              <WarehouseSummary />
-              <InventoryWidgets />
-              <OnTheWay rows={visibleShipments} onShipmentClick={openShipment} />
-            </div>
-            <div className="right-column">
-              <section className={`island task-island distribute-section${allDistributionTasksVisible ? ' distribute-section--expanded' : ''}`}>
-                <AuraHeader title="Distribute kits" subtitle="2 ambassadors today, 5 later" />
-                <div className="section-divider" />
-                <div className="task-list">
-                  {(allDistributionTasksVisible ? distributionTasks : distributionTasks.slice(0, 3)).map((task) => <TaskRow key={task.name} task={task} onClick={() => setScannerModalOpen(true)} />)}
-                </div>
-                <button className={`show-more${allDistributionTasksVisible ? ' show-more--expanded' : ''}`} type="button" onClick={() => setAllDistributionTasksVisible((visible) => !visible)}>
-                  {allDistributionTasksVisible ? 'Show less' : 'Show 4 more'} <Icon src={`${ASSET}link-chevron.svg`} size={16} />
-                </button>
-              </section>
-              {visibleReturnKits.length > 0 && (
+          <div className="content-scroll">
+            <div className="columns">
+              <div className="left-column">
+                <WarehouseSummary />
+                <InventoryWidgets />
+                <OnTheWay rows={visibleShipments} onShipmentClick={openShipment} />
+              </div>
+              <div className="right-column">
+                <section className={`island task-island distribute-section${allDistributionTasksVisible ? ' distribute-section--expanded' : ''}`}>
+                  <AuraHeader title="Distribute kits" subtitle="2 ambassadors today, 5 later" />
+                  <div className="section-divider" />
+                  <div className="task-list">
+                    {(allDistributionTasksVisible ? distributionTasks : distributionTasks.slice(0, 3)).map((task) => <TaskRow key={task.name} task={task} onClick={() => setScannerModalOpen(true)} />)}
+                  </div>
+                  <button className={`show-more${allDistributionTasksVisible ? ' show-more--expanded' : ''}`} type="button" onClick={() => setAllDistributionTasksVisible((visible) => !visible)}>
+                    {allDistributionTasksVisible ? 'Show less' : 'Show 4 more'} <Icon src={`${ASSET}link-chevron.svg`} size={16} />
+                  </button>
+                </section>
+                {visibleReturnKits.length > 0 && (
+                  <TaskIsland
+                    title="Get the kits back"
+                    subtitle="1 fired ambassador with kits on hand"
+                    tasks={[{ name: 'Álvaro Molina', kits: [{ count: visibleReturnKits.length, label: '1-kit Crédito' }] }]}
+                    className="kits-back-section"
+                    onTaskClick={() => setReturnDrawerOpen(true)}
+                  />
+                )}
                 <TaskIsland
-                  title="Get the kits back"
-                  subtitle="1 fired ambassador with kits on hand"
-                  tasks={[{ name: 'Álvaro Molina', kits: [{ count: visibleReturnKits.length, label: '1-kit Crédito' }] }]}
-                  className="kits-back-section"
-                  onTaskClick={() => setReturnDrawerOpen(true)}
+                  title="Check shipments"
+                  subtitle={checkShipmentSubtitle}
+                  tasks={checkShipmentTasks}
+                  className="shipments-section"
+                  onTaskClick={(task) => {
+                    const shipment = checkShipments.find((item) => item.id === task.name);
+                    if (shipment) openShipment(shipment);
+                  }}
                 />
-              )}
-              <TaskIsland
-                title="Check shipments"
-                subtitle={checkShipmentSubtitle}
-                tasks={checkShipmentTasks}
-                className="shipments-section"
-                onTaskClick={(task) => {
-                  const shipment = checkShipments.find((item) => item.id === task.name);
-                  if (shipment) openShipment(shipment);
-                }}
-              />
-              <TaskIsland
-                title="Check the kits"
-                subtitle={linkedKitTaskResolved ? '1 task' : '2 tasks'}
-                tasks={[
-                  { name: 'Kits weren’t moved from warehouse too long', kits: [{ count: 563, label: '1-kit Crédito' }, { count: 316, label: '2-kit Cuenta+Crédito' }] },
-                  ...(!linkedKitTaskResolved ? [{ name: 'Kit from warehouse was linked to the client', kits: [{ count: 1, label: '1-kit Crédito' }], badge: 'today', accent: true }] : []),
-                ]}
-                className="check-kits-section"
-                isTaskInteractive={(task) => task.name === 'Kit from warehouse was linked to the client'}
-                onTaskClick={() => setLinkedKitDrawerOpen(true)}
-              />
+                <TaskIsland
+                  title="Check the kits"
+                  subtitle={linkedKitTaskResolved ? '1 task' : '2 tasks'}
+                  tasks={[
+                    { name: 'Kits weren’t moved from warehouse too long', kits: [{ count: 563, label: '1-kit Crédito' }, { count: 316, label: '2-kit Cuenta+Crédito' }] },
+                    ...(!linkedKitTaskResolved ? [{ name: 'Kit from warehouse was linked to the client', kits: [{ count: 1, label: '1-kit Crédito' }], badge: 'today', accent: true }] : []),
+                  ]}
+                  className="check-kits-section"
+                  isTaskInteractive={(task) => task.name === 'Kit from warehouse was linked to the client'}
+                  onTaskClick={() => setLinkedKitDrawerOpen(true)}
+                />
+              </div>
             </div>
           </div>
         </div>
