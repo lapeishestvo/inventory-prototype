@@ -72,7 +72,7 @@ button { font: inherit; color: inherit; }
 .nav-item .asset-icon { width: 24px; height: 24px; }
 
 .content { flex: 1; min-width: 0; min-height: calc(100vh - 40px); display: flex; flex-direction: column; }
-.topbar { display: flex; align-items: center; justify-content: space-between; gap: 40px; width: 100%; height: 88px; flex: none; padding: 20px; border-radius: var(--radius-sm); background: var(--color-surface); }
+.topbar { position: sticky; top: var(--layout-margin); z-index: 10; display: flex; align-items: center; justify-content: space-between; gap: 40px; width: 100%; height: 88px; flex: none; padding: 20px; border-radius: var(--radius-sm); background: var(--color-surface); }
 .topbar__left, .topbar__right { display: flex; height: 48px; align-items: center; gap: 12px; }
 .topbar__left { flex: 1; min-width: 0; }
 .topbar__right { width: 388px; flex: none; }
